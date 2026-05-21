@@ -6,9 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { useFocusEffect } from '@react-navigation/native';
 import { useCallback } from 'react';
-import { useColorScheme } from 'react-native';
 import * as Network from 'expo-network';
-import * as Localization from 'expo-localization';
 import * as FileSystem from 'expo-file-system';
 import * as Battery from 'expo-battery';
 
