@@ -1,5 +1,16 @@
 import { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, Alert } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  Image,
+} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { supabase } from '../lib/supabase';
 import { useNavigation } from '@react-navigation/native';
@@ -64,7 +75,15 @@ export default function AddProductScreen() {
   }
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1 }}
+        keyboardShouldPersistTaps="handled"
+      >
+        <View style={styles.container}>
       <TouchableOpacity
   onPress={() => navigation.goBack()}
   style={styles.backButton}
@@ -90,8 +109,10 @@ export default function AddProductScreen() {
       <TouchableOpacity style={styles.button} onPress={addProduct}>
         <Text style={styles.buttonText}>Upload Product</Text>
       </TouchableOpacity>
-    </View>
-  );
+      </View>
+</ScrollView>
+</KeyboardAvoidingView>
+);
 }
 
 const styles = StyleSheet.create({
